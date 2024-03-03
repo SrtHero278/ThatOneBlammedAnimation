@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://b75xu6dkh2mnx"]
+
+[ext_resource type="Script" path="res://tools.gd" id="1_fxmbn"]
+
+[node name="Tools" type="Node"]
+script = ExtResource("1_fxmbn")

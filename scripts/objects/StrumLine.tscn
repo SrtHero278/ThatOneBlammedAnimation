@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://5kgq8m1k5qkm"]
+
+[ext_resource type="Script" path="res://scripts/objects/StrumLine.gd" id="1_cvhsy"]
+
+[node name="StrumLine" type="Node2D"]
+script = ExtResource("1_cvhsy")
+
+[node name="Notes" type="CanvasGroup" parent="."]
+
+[node name="HeldNotes" type="CanvasGroup" parent="."]

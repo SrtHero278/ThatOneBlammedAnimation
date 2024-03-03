@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://bpx47t71uyfeg"
+path="res://.godot/imported/Voices.ogg-7c0e16090ed41991c69d2c26222aef01.oggvorbisstr"
+
+[deps]
+
+source_file="res://assets/songs/blammed b3/audio/Voices.ogg"
+dest_files=["res://.godot/imported/Voices.ogg-7c0e16090ed41991c69d2c26222aef01.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

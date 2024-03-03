@@ -1,0 +1,227 @@
+[gd_scene load_steps=17 format=3 uid="uid://ch2mgqvm6mldv"]
+
+[ext_resource type="Script" path="res://addons/parallax_node/parallax_node.gd" id="1_6uft8"]
+[ext_resource type="Script" path="res://scenes/game/stages/philly.gd" id="1_vgrbf"]
+[ext_resource type="Texture2D" uid="uid://dunmwqqytbsfe" path="res://assets/images/stages/philly/sky.png" id="2_6k7is"]
+[ext_resource type="Shader" path="res://scenes/game/stages/city.gdshader" id="4_fbc0m"]
+[ext_resource type="Texture2D" uid="uid://b46mrmd27gexc" path="res://assets/images/stages/philly/window.png" id="4_nwfdv"]
+[ext_resource type="Texture2D" uid="uid://c181cxbuqo5r1" path="res://assets/images/stages/philly/behindTrain.png" id="5_m7mn3"]
+[ext_resource type="Texture2D" uid="uid://dvbjlbu3jpok" path="res://assets/images/stages/philly/cityRepeat.png" id="6_8mbup"]
+[ext_resource type="Texture2D" uid="uid://cxuorhrfyod3t" path="res://assets/images/stages/philly/train.png" id="6_xeqsm"]
+[ext_resource type="Texture2D" uid="uid://m3jgomso8y7b" path="res://assets/images/stages/philly/street.png" id="7_jl86c"]
+[ext_resource type="Texture2D" uid="uid://bthk3y5f1tqpb" path="res://assets/images/stages/philly/grayTain.png" id="8_03yad"]
+[ext_resource type="Texture2D" uid="uid://ceelhpd6wpc7c" path="res://assets/images/stages/philly/tunnelWall.png" id="8_560e6"]
+[ext_resource type="AudioStream" uid="uid://bh5wciev6ud4s" path="res://assets/sounds/stages/philly/train_passes.ogg" id="9_edfdb"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_p4d6k"]
+shader = ExtResource("4_fbc0m")
+shader_parameter/uv_add = null
+shader_parameter/window = ExtResource("4_nwfdv")
+
+[sub_resource type="Animation" id="Animation_jsbhm"]
+resource_name = "bfTrain"
+length = 4.36367
+step = 0.181818
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("1-0/BfTrain:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2, 2.18182, 3.63636, 4.36364),
+"transitions": PackedFloat32Array(0.21, 1, 4.7619, 0.435, 1),
+"update": 0,
+"values": [Vector2(2000, 400), Vector2(-270, 400), Vector2(-270, 400), Vector2(-9200, 400), Vector2(-9600, 400)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("1-0/Player:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(2.54545, 2.90909, 3.09091, 3.63636, 4.36364),
+"transitions": PackedFloat32Array(1.66667, 0.6, 1.72728, 0.435, 1),
+"update": 0,
+"values": [Vector2(1120, 790), Vector2(900, 380), Vector2(564.565, 450), Vector2(-8410, 450), Vector2(-8810, 450)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("1-0/Player:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(2.54545, 2.90909, 3.09091),
+"transitions": PackedFloat32Array(1.66667, 0.6, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(0.85, 0.85), Vector2(0.75, 0.75)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("1-0/Player:show_behind_parent")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 2.90909),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+
+[sub_resource type="Animation" id="Animation_vnv1w"]
+resource_name = "picoTrain"
+length = 4.54547
+step = 0.181818
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("1-0/PicoTrain:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2, 2.18182, 4, 4.545),
+"transitions": PackedFloat32Array(0.210224, 1, 4.7619, 0.3, 1),
+"update": 0,
+"values": [Vector2(2000, 360), Vector2(-270, 360), Vector2(-270, 360), Vector2(-5000, 360), Vector2(-10000, 360)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("1-0/Opponent:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(1.63636, 2, 2.18182, 4, 4.54545),
+"transitions": PackedFloat32Array(1.66667, 0.6, 4.7619, 0.3, 1),
+"update": 0,
+"values": [Vector2(400, 790), Vector2(460, 360), Vector2(500, 430), Vector2(-4230, 430), Vector2(-9230, 430)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("1-0/Opponent:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(1.63636, 2, 2.18182),
+"transitions": PackedFloat32Array(1.66667, 0.6, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(0.85, 0.85), Vector2(0.75, 0.75)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("1-0/Opponent:show_behind_parent")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath(".:building_scroll_mult")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(2.89727, 2.90909, 3.9996, 4.545),
+"transitions": PackedFloat32Array(1, 2.54912, 0.3, 1),
+"update": 0,
+"values": [0.0, 0.173, 1.5, 3.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_8ilmh"]
+_data = {
+"bfTrain": SubResource("Animation_jsbhm"),
+"picoTrain": SubResource("Animation_vnv1w")
+}
+
+[node name="Philly" type="Node2D"]
+script = ExtResource("1_vgrbf")
+player_position = NodePath("1-0/Player")
+spectator_position = NodePath("1-0/Spectator")
+opponent_position = NodePath("1-0/Opponent")
+
+[node name="0-1" type="Node2D" parent="."]
+script = ExtResource("1_6uft8")
+parallax_factor = Vector2(0, 0.1)
+
+[node name="Sky" type="Sprite2D" parent="0-1"]
+position = Vector2(-100, -60)
+texture = ExtResource("2_6k7is")
+centered = false
+
+[node name="0-3" type="Node2D" parent="."]
+script = ExtResource("1_6uft8")
+parallax_factor = Vector2(0, 0.3)
+
+[node name="Buildings" type="Sprite2D" parent="0-3"]
+texture_repeat = 2
+material = SubResource("ShaderMaterial_p4d6k")
+position = Vector2(-15, 0)
+scale = Vector2(0.85, 0.85)
+texture = ExtResource("6_8mbup")
+centered = false
+
+[node name="TunnelWall" type="TextureRect" parent="0-3"]
+modulate = Color(0.662745, 0.662745, 0.662745, 1)
+self_modulate = Color(1, 1, 1, 0)
+texture_repeat = 2
+material = SubResource("ShaderMaterial_p4d6k")
+offset_top = -80.0
+offset_bottom = 640.0
+texture = ExtResource("8_560e6")
+expand_mode = 1
+
+[node name="1-0" type="Node2D" parent="."]
+script = ExtResource("1_6uft8")
+
+[node name="BehindTrain" type="Sprite2D" parent="1-0"]
+position = Vector2(-40, 50)
+texture = ExtResource("5_m7mn3")
+centered = false
+
+[node name="Train" type="Sprite2D" parent="1-0"]
+position = Vector2(2000, 360)
+texture = ExtResource("6_xeqsm")
+centered = false
+
+[node name="PicoTrain" type="Sprite2D" parent="1-0"]
+modulate = Color(0.839216, 0, 0.490196, 1)
+position = Vector2(2000, 360)
+texture = ExtResource("8_03yad")
+centered = false
+
+[node name="BfTrain" type="Sprite2D" parent="1-0"]
+modulate = Color(0, 0.8, 1, 1)
+position = Vector2(2000, 400)
+texture = ExtResource("8_03yad")
+centered = false
+
+[node name="Street" type="Sprite2D" parent="1-0"]
+position = Vector2(-40, 50)
+texture = ExtResource("7_jl86c")
+centered = false
+
+[node name="Spectator" type="Node2D" parent="1-0"]
+position = Vector2(850, 720)
+
+[node name="Player" type="Node2D" parent="1-0"]
+position = Vector2(1120, 790)
+
+[node name="Opponent" type="Node2D" parent="1-0"]
+position = Vector2(400, 790)
+
+[node name="TrainSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("9_edfdb")
+
+[node name="SpecialAnim" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_8ilmh")
+}

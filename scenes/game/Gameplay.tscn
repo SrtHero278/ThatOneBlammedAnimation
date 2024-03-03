@@ -1,0 +1,149 @@
+[gd_scene load_steps=9 format=3 uid="uid://dxk7cxxoms1pn"]
+
+[ext_resource type="Script" path="res://scenes/game/Gameplay.gd" id="1_1vbvm"]
+[ext_resource type="PackedScene" uid="uid://5kgq8m1k5qkm" path="res://scripts/objects/StrumLine.tscn" id="1_om2o8"]
+[ext_resource type="Texture2D" uid="uid://kvhmrnrn8c3n" path="res://assets/images/game/heart.png" id="3_7rt2l"]
+[ext_resource type="Texture2D" uid="uid://dk4juj1owd7c0" path="res://assets/images/game/clock.png" id="4_eudbx"]
+[ext_resource type="AudioStream" uid="uid://bqk86km8j0ujn" path="res://assets/sounds/fnf_loss_sfx.ogg" id="5_t4qnq"]
+
+[sub_resource type="Gradient" id="Gradient_kpyja"]
+interpolation_color_space = 1
+offsets = PackedFloat32Array(0, 0.3, 0.35, 1)
+colors = PackedColorArray(1, 0.466667, 0, 1, 1, 0.466667, 0, 1, 0, 1, 0.576471, 1, 0, 1, 0.576471, 1)
+
+[sub_resource type="Gradient" id="Gradient_u3q1l"]
+interpolation_mode = 2
+interpolation_color_space = 1
+offsets = PackedFloat32Array(0, 0.512048, 1)
+colors = PackedColorArray(1, 0, 0.180392, 1, 1, 1, 0, 1, 0, 1, 0.352941, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_col26"]
+bg_color = Color(0.07, 0.07, 0.07, 0.501961)
+border_width_left = 5
+border_width_right = 5
+border_color = Color(0, 0.8, 0.8, 1)
+
+[node name="Gameplay" type="Node2D"]
+script = ExtResource("1_1vbvm")
+ms_gradient = SubResource("Gradient_kpyja")
+hp_gradient = SubResource("Gradient_u3q1l")
+
+[node name="Tracks" type="Node" parent="."]
+
+[node name="Scripts" type="Node" parent="."]
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(640, 360)
+position_smoothing_enabled = true
+position_smoothing_speed = 3.0
+
+[node name="HUD" type="CanvasLayer" parent="."]
+offset = Vector2(640, 360)
+transform = Transform2D(1, 0, 0, 1, 640, 360)
+
+[node name="Panel" type="Panel" parent="HUD"]
+offset_left = 100.0
+offset_top = -360.0
+offset_right = 540.0
+offset_bottom = 360.0
+pivot_offset = Vector2(220, 0)
+theme_override_styles/panel = SubResource("StyleBoxFlat_col26")
+
+[node name="Panel2" type="Panel" parent="HUD"]
+offset_left = -540.0
+offset_top = -360.0
+offset_right = -100.0
+offset_bottom = 360.0
+pivot_offset = Vector2(220, 0)
+theme_override_styles/panel = SubResource("StyleBoxFlat_col26")
+
+[node name="StrumLine" parent="HUD" instance=ExtResource("1_om2o8")]
+position = Vector2(320, 290)
+
+[node name="StrumLine2" parent="HUD" instance=ExtResource("1_om2o8")]
+position = Vector2(-320, 290)
+cpu_input = true
+
+[node name="HitInfo" type="Label" parent="HUD"]
+offset_left = -220.0
+offset_top = -49.0
+offset_right = 220.0
+offset_bottom = 25.0
+pivot_offset = Vector2(215, 37)
+theme_override_constants/outline_size = 4
+theme_override_font_sizes/font_size = 24
+text = "Get Ready!"
+horizontal_alignment = 1
+
+[node name="AnchorWorkaround" type="Node2D" parent="HUD"]
+position = Vector2(-635, 356)
+
+[node name="ScoreInfo" type="Label" parent="HUD/AnchorWorkaround"]
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -104.0
+offset_right = 120.0
+grow_vertical = 0
+theme_override_constants/outline_size = 2
+text = "Score: 0
+Misses: 0
+Accuracy: 100%
+Average MS: 0"
+vertical_alignment = 2
+
+[node name="ColorRect" type="ColorRect" parent="HUD"]
+offset_left = 497.0
+offset_top = 280.0
+offset_right = 635.0
+offset_bottom = 356.0
+scale = Vector2(0.85, 0.85)
+pivot_offset = Vector2(138, 76)
+color = Color(0.105882, 0.105882, 0.105882, 0.501961)
+
+[node name="Health" type="TextureProgressBar" parent="HUD/ColorRect"]
+layout_mode = 0
+offset_left = 5.0
+offset_top = 5.0
+offset_right = 96.0
+offset_bottom = 99.0
+scale = Vector2(0.7, 0.7)
+max_value = 1.0
+step = 0.001
+fill_mode = 4
+texture_under = ExtResource("3_7rt2l")
+texture_progress = ExtResource("3_7rt2l")
+tint_under = Color(0.270588, 0.270588, 0.270588, 1)
+tint_progress = Color(0, 1, 0.490196, 1)
+
+[node name="Time" type="TextureProgressBar" parent="HUD/ColorRect"]
+layout_mode = 0
+offset_left = 69.0
+offset_top = 5.0
+offset_right = 160.0
+offset_bottom = 99.0
+scale = Vector2(0.7, 0.7)
+max_value = 1.0
+step = 0.001
+fill_mode = 4
+texture_under = ExtResource("4_eudbx")
+texture_progress = ExtResource("4_eudbx")
+tint_under = Color(0.270588, 0.270588, 0.270588, 1)
+
+[node name="Label" type="Label" parent="HUD/ColorRect"]
+visible = false
+layout_mode = 0
+offset_left = 45.8824
+offset_top = -34.1176
+offset_right = 136.882
+offset_bottom = -0.117649
+theme_override_font_sizes/font_size = 24
+text = "Failed..."
+
+[node name="Ded" type="AudioStreamPlayer" parent="HUD/ColorRect"]
+stream = ExtResource("5_t4qnq")
+
+[connection signal="note_hit" from="HUD/StrumLine" to="." method="_note_hit"]
+[connection signal="note_miss" from="HUD/StrumLine" to="." method="_note_miss"]
+[connection signal="note_hit" from="HUD/StrumLine2" to="." method="_note_hit"]
+[connection signal="note_miss" from="HUD/StrumLine2" to="." method="_note_miss"]

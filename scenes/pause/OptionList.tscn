@@ -1,0 +1,289 @@
+[gd_scene load_steps=15 format=3 uid="uid://omd8fakcrcu8"]
+
+[ext_resource type="Theme" uid="uid://k7iw0ht055ps" path="res://assets/images/pause/options/optionsTheme.tres" id="1_06fn6"]
+[ext_resource type="Script" path="res://scenes/pause/OptionList.gd" id="1_qh5r0"]
+[ext_resource type="Script" path="res://scripts/objects/options/ListOpt.gd" id="2_egmcr"]
+[ext_resource type="FontFile" uid="uid://by8ulsagg3u4" path="res://assets/fonts/vcr.ttf" id="2_gggrm"]
+[ext_resource type="Script" path="res://scripts/objects/options/CheckboxOpt.gd" id="2_hqf7u"]
+[ext_resource type="Script" path="res://scripts/objects/options/KeybindOpt.gd" id="2_up7uo"]
+[ext_resource type="Script" path="res://scripts/objects/options/SliderOpt.gd" id="3_wky01"]
+[ext_resource type="Texture2D" uid="uid://buvfn2on5ep6l" path="res://assets/images/notes/idk/arrow.png" id="4_etovg"]
+[ext_resource type="Texture2D" uid="uid://caqo1gol46eqf" path="res://assets/images/notes/delta/arrow.png" id="5_e5bgu"]
+[ext_resource type="Texture2D" uid="uid://d1nbp0xpyxfod" path="res://assets/images/notes/funkin/strum.png" id="6_h2fkf"]
+[ext_resource type="Script" path="res://scripts/objects/options/NumberOpt.gd" id="10_lux6s"]
+
+[sub_resource type="StyleBoxLine" id="StyleBoxLine_fo3hx"]
+color = Color(0.219608, 0.254902, 0.733333, 1)
+thickness = 3
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_akyin"]
+content_margin_left = 6.0
+content_margin_top = 7.0
+content_margin_right = 6.0
+bg_color = Color(0.6, 0.6, 0.6, 0)
+
+[sub_resource type="StyleBoxLine" id="StyleBoxLine_cnl2k"]
+color = Color(0.219608, 0.254902, 0.733333, 1)
+thickness = 3
+
+[node name="OptionList" type="Panel"]
+offset_left = 75.0
+offset_top = 30.0
+offset_right = 650.0
+offset_bottom = 690.0
+focus_mode = 1
+theme = ExtResource("1_06fn6")
+script = ExtResource("1_qh5r0")
+
+[node name="Container" type="ScrollContainer" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 15.0
+offset_top = 25.0
+offset_right = -15.0
+offset_bottom = -25.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Container"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Gameplay" type="Label" parent="Container/VBoxContainer"]
+layout_mode = 2
+focus_mode = 1
+theme_override_fonts/font = ExtResource("2_gggrm")
+theme_override_font_sizes/font_size = 32
+text = "Gameplay"
+horizontal_alignment = 1
+
+[node name="HSeparator2" type="HSeparator" parent="Container/VBoxContainer"]
+layout_mode = 2
+size_flags_stretch_ratio = 0.0
+focus_mode = 1
+theme_override_styles/separator = SubResource("StyleBoxLine_fo3hx")
+
+[node name="NoteSkinLabel" type="Label" parent="Container/VBoxContainer"]
+layout_mode = 2
+focus_mode = 1
+theme_override_colors/font_color = Color(0.87451, 0.87451, 0.87451, 1)
+theme_override_fonts/font = ExtResource("2_gggrm")
+theme_override_styles/normal = SubResource("StyleBoxFlat_akyin")
+text = "Note Skin"
+
+[node name="NoteSkin" type="OptionButton" parent="Container/VBoxContainer"]
+layout_mode = 2
+focus_mode = 1
+theme_override_fonts/font = ExtResource("2_gggrm")
+icon_alignment = 2
+expand_icon = true
+item_count = 3
+selected = 0
+popup/item_0/text = "idk"
+popup/item_0/icon = ExtResource("4_etovg")
+popup/item_0/id = 0
+popup/item_1/text = "Delta"
+popup/item_1/icon = ExtResource("5_e5bgu")
+popup/item_1/id = 1
+popup/item_2/text = "Funkin"
+popup/item_2/icon = ExtResource("6_h2fkf")
+popup/item_2/id = 2
+script = ExtResource("2_egmcr")
+option_name = "note_skin"
+
+[node name="ParseLabel" type="Label" parent="Container/VBoxContainer"]
+layout_mode = 2
+focus_mode = 1
+theme_override_colors/font_color = Color(0.87451, 0.87451, 0.87451, 1)
+theme_override_fonts/font = ExtResource("2_gggrm")
+theme_override_styles/normal = SubResource("StyleBoxFlat_akyin")
+text = "Playing Strumline"
+
+[node name="FNFParse" type="OptionButton" parent="Container/VBoxContainer"]
+layout_mode = 2
+focus_mode = 1
+theme_override_fonts/font = ExtResource("2_gggrm")
+item_count = 5
+selected = 0
+popup/item_0/text = "Player"
+popup/item_0/id = 1
+popup/item_1/text = "Opponent"
+popup/item_1/id = 2
+popup/item_2/text = "Camera Target"
+popup/item_2/id = 0
+popup/item_3/text = "gimme all of em."
+popup/item_3/id = 3
+popup/item_4/text = "Botplay"
+popup/item_4/id = 4
+script = ExtResource("2_egmcr")
+option_name = "playing_target"
+
+[node name="UpscrollCheck" type="CheckButton" parent="Container/VBoxContainer"]
+layout_mode = 2
+focus_mode = 1
+theme_override_fonts/font = ExtResource("2_gggrm")
+text = "Upscroll"
+script = ExtResource("2_hqf7u")
+option_name = "upscroll"
+
+[node name="MiddlescrollCheck" type="CheckButton" parent="Container/VBoxContainer"]
+layout_mode = 2
+focus_mode = 1
+theme_override_fonts/font = ExtResource("2_gggrm")
+text = "Center Notefield"
+script = ExtResource("2_hqf7u")
+option_name = "middlescroll"
+
+[node name="ScrollCheck" type="CheckButton" parent="Container/VBoxContainer"]
+layout_mode = 2
+focus_mode = 1
+text = "Force Scroll Speed ($VALUE)"
+script = ExtResource("2_hqf7u")
+option_name = "force_scroll"
+
+[node name="ScrollSpeed" type="HSlider" parent="Container/VBoxContainer" node_paths=PackedStringArray("label")]
+layout_mode = 2
+focus_mode = 1
+min_value = 1.0
+max_value = 7.0
+step = 0.25
+value = 2.5
+script = ExtResource("3_wky01")
+label = NodePath("../ScrollCheck")
+
+[node name="TiltLabel" type="Label" parent="Container/VBoxContainer"]
+layout_mode = 2
+focus_mode = 1
+theme_override_colors/font_color = Color(0.87451, 0.87451, 0.87451, 1)
+theme_override_fonts/font = ExtResource("2_gggrm")
+theme_override_styles/normal = SubResource("StyleBoxFlat_akyin")
+text = "Combo Tilt Intensity ($VALUE)"
+
+[node name="ComboTilt" type="HSlider" parent="Container/VBoxContainer" node_paths=PackedStringArray("label")]
+layout_mode = 2
+focus_mode = 1
+max_value = 2.0
+step = 0.125
+value = 1.0
+script = ExtResource("3_wky01")
+label = NodePath("../TiltLabel")
+option_name = "combo_tilt"
+default_value = 1.0
+
+[node name="AlphaLabel" type="Label" parent="Container/VBoxContainer"]
+layout_mode = 2
+focus_mode = 1
+theme_override_colors/font_color = Color(0.87451, 0.87451, 0.87451, 1)
+theme_override_fonts/font = ExtResource("2_gggrm")
+theme_override_styles/normal = SubResource("StyleBoxFlat_akyin")
+text = "Lane Panel Transparency ($VALUE)"
+
+[node name="LaneAlpha" type="HSlider" parent="Container/VBoxContainer" node_paths=PackedStringArray("label")]
+layout_mode = 2
+focus_mode = 1
+max_value = 2.0
+step = 0.125
+value = 1.0
+script = ExtResource("3_wky01")
+label = NodePath("../AlphaLabel")
+option_name = "panel_alpha"
+default_value = 1.0
+
+[node name="Performance" type="Label" parent="Container/VBoxContainer"]
+layout_mode = 2
+focus_mode = 1
+theme_override_fonts/font = ExtResource("2_gggrm")
+theme_override_font_sizes/font_size = 32
+text = "Performance"
+horizontal_alignment = 1
+
+[node name="HSeparator3" type="HSeparator" parent="Container/VBoxContainer"]
+layout_mode = 2
+size_flags_stretch_ratio = 0.0
+focus_mode = 1
+theme_override_styles/separator = SubResource("StyleBoxLine_cnl2k")
+
+[node name="AliasingCheck" type="CheckButton" parent="Container/VBoxContainer"]
+layout_mode = 2
+focus_mode = 1
+button_pressed = true
+text = "Default Antialiasing"
+script = ExtResource("2_hqf7u")
+option_name = "antialiasing"
+default_value = true
+
+[node name="FramerateLabel" type="Label" parent="Container/VBoxContainer"]
+layout_mode = 2
+focus_mode = 1
+theme_override_colors/font_color = Color(0.87451, 0.87451, 0.87451, 1)
+theme_override_fonts/font = ExtResource("2_gggrm")
+theme_override_styles/normal = SubResource("StyleBoxFlat_akyin")
+text = "Framerate (0 = INFINITE)"
+
+[node name="SpinBox" type="SpinBox" parent="Container/VBoxContainer/FramerateLabel"]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -100.0
+offset_top = -11.5
+offset_bottom = 10.5
+grow_horizontal = 0
+grow_vertical = 2
+focus_mode = 1
+max_value = 1000.0
+step = 10.0
+value = 120.0
+script = ExtResource("10_lux6s")
+
+[node name="Keybinds" type="Label" parent="Container/VBoxContainer"]
+layout_mode = 2
+focus_mode = 1
+theme_override_fonts/font = ExtResource("2_gggrm")
+theme_override_font_sizes/font_size = 32
+text = "Keybinds"
+horizontal_alignment = 1
+
+[node name="HSeparator" type="HSeparator" parent="Container/VBoxContainer"]
+layout_mode = 2
+size_flags_stretch_ratio = 0.0
+focus_mode = 1
+theme_override_styles/separator = SubResource("StyleBoxLine_cnl2k")
+
+[node name="LeftKeybind" type="Button" parent="Container/VBoxContainer"]
+layout_mode = 2
+focus_mode = 1
+theme_override_fonts/font = ExtResource("2_gggrm")
+text = "Left Keybinds: "
+script = ExtResource("2_up7uo")
+
+[node name="DownKeybind" type="Button" parent="Container/VBoxContainer"]
+layout_mode = 2
+focus_mode = 1
+theme_override_fonts/font = ExtResource("2_gggrm")
+text = "Down Keybinds: "
+script = ExtResource("2_up7uo")
+option_name = "note_down"
+default_value = Array[String](["S", "Down"])
+
+[node name="UpKeybind" type="Button" parent="Container/VBoxContainer"]
+layout_mode = 2
+focus_mode = 1
+theme_override_fonts/font = ExtResource("2_gggrm")
+text = "Up Keybinds: "
+script = ExtResource("2_up7uo")
+option_name = "note_up"
+default_value = Array[String](["Kp 5", "Up"])
+
+[node name="RightKeybind" type="Button" parent="Container/VBoxContainer"]
+layout_mode = 2
+focus_mode = 1
+theme_override_fonts/font = ExtResource("2_gggrm")
+text = "Right Keybinds: "
+script = ExtResource("2_up7uo")
+option_name = "note_right"
+default_value = Array[String](["Kp 6", "Right"])

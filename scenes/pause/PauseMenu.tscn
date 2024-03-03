@@ -1,0 +1,86 @@
+[gd_scene load_steps=10 format=3 uid="uid://dpnjxk8hbgtqd"]
+
+[ext_resource type="Script" path="res://scenes/pause/PauseMenu.gd" id="1_876i5"]
+[ext_resource type="Texture2D" uid="uid://dgqmpvfggvg75" path="res://assets/images/pause/pause.png" id="2_8thuu"]
+[ext_resource type="Texture2D" uid="uid://b375647jbyidc" path="res://assets/images/pause/bg.png" id="2_mf3mv"]
+[ext_resource type="PackedScene" uid="uid://omd8fakcrcu8" path="res://scenes/pause/OptionList.tscn" id="3_2bvij"]
+[ext_resource type="Texture2D" uid="uid://cqma72sol83bm" path="res://assets/images/pause/resume.png" id="4_3shfp"]
+[ext_resource type="Texture2D" uid="uid://crgxavioa3nh" path="res://assets/images/pause/songs.png" id="5_7o0kc"]
+[ext_resource type="FontFile" uid="uid://by8ulsagg3u4" path="res://assets/fonts/vcr.ttf" id="6_lnh1n"]
+[ext_resource type="AudioStream" uid="uid://d33mvbwwrxae1" path="res://assets/music/breakfast.ogg" id="7_0rgtv"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_hwwt4"]
+line_spacing = 0.0
+font = ExtResource("6_lnh1n")
+font_size = 28
+shadow_size = 0
+shadow_color = Color(1, 1, 1, 1)
+shadow_offset = Vector2(0, 0)
+
+[node name="PauseMenu" type="CanvasLayer"]
+process_mode = 3
+script = ExtResource("1_876i5")
+
+[node name="BG" type="Sprite2D" parent="."]
+position = Vector2(640, 360)
+texture = ExtResource("2_mf3mv")
+
+[node name="Icon" type="Sprite2D" parent="."]
+position = Vector2(975, -300)
+scale = Vector2(0.6, 0.6)
+texture = ExtResource("2_8thuu")
+
+[node name="OptionList" parent="." instance=ExtResource("3_2bvij")]
+
+[node name="QuickNote" type="Label" parent="."]
+offset_left = 930.0
+offset_top = 685.0
+offset_right = 1274.0
+offset_bottom = 719.0
+theme_override_font_sizes/font_size = 10
+text = "\"idk rhythm\" and \"That One Blammed Animation\"
+coded by Srt (@SrtPro278 on twitter)"
+horizontal_alignment = 2
+
+[node name="Options" type="Node2D" parent="."]
+position = Vector2(976, 538)
+
+[node name="Resume" type="TextureButton" parent="Options"]
+offset_left = -75.0
+offset_top = -37.5
+offset_bottom = 37.5
+pivot_offset = Vector2(37.5, 37.5)
+focus_mode = 1
+texture_normal = ExtResource("4_3shfp")
+
+[node name="Restart" type="TextureButton" parent="Options"]
+offset_top = -37.5
+offset_right = 75.0
+offset_bottom = 37.5
+pivot_offset = Vector2(37.5, 37.5)
+focus_mode = 1
+texture_normal = ExtResource("5_7o0kc")
+
+[node name="OptionLabel" type="Label" parent="."]
+offset_left = 826.0
+offset_top = 450.0
+offset_right = 1126.0
+offset_bottom = 495.0
+text = "Select an Option"
+label_settings = SubResource("LabelSettings_hwwt4")
+horizontal_alignment = 1
+
+[node name="Line2D" type="Line2D" parent="OptionLabel"]
+position = Vector2(0, 35)
+points = PackedVector2Array(0, 0, 300, 0)
+width = 5.0
+default_color = Color(0.219608, 0.254902, 0.733333, 1)
+begin_cap_mode = 2
+end_cap_mode = 2
+
+[node name="Music" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("7_0rgtv")
+volume_db = -25.0
+
+[connection signal="pressed" from="Options/Resume" to="." method="_on_resume_pressed"]
+[connection signal="pressed" from="Options/Restart" to="." method="_on_songs_pressed"]

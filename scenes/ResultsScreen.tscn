@@ -1,0 +1,92 @@
+[gd_scene load_steps=8 format=3 uid="uid://bahi8eupunoyf"]
+
+[ext_resource type="Script" path="res://scenes/ResultsScreen.gd" id="1_2l4fm"]
+[ext_resource type="AudioStream" uid="uid://dqu1p36sncp7e" path="res://assets/sounds/scrollMenu.ogg" id="1_31y11"]
+[ext_resource type="FontFile" uid="uid://by8ulsagg3u4" path="res://assets/fonts/vcr.ttf" id="2_q82si"]
+[ext_resource type="Texture2D" uid="uid://de7o2ey1ed3ip" path="res://assets/images/game/ranks/s.png" id="4_len4p"]
+[ext_resource type="Theme" uid="uid://k7iw0ht055ps" path="res://assets/images/pause/options/optionsTheme.tres" id="5_3jmqn"]
+[ext_resource type="PackedScene" uid="uid://omd8fakcrcu8" path="res://scenes/pause/OptionList.tscn" id="6_7ed7x"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_ji17o"]
+line_spacing = 0.0
+font = ExtResource("2_q82si")
+font_size = 28
+shadow_size = 0
+shadow_color = Color(1, 1, 1, 1)
+shadow_offset = Vector2(0, 0)
+
+[node name="ResultsScreen" type="CanvasLayer"]
+process_mode = 3
+script = ExtResource("1_2l4fm")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.501961)
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("1_31y11")
+
+[node name="Label" type="Label" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -275.0
+offset_top = -87.5
+offset_right = 275.0
+offset_bottom = 87.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "B3 Blammed - Hard"
+label_settings = SubResource("LabelSettings_ji17o")
+
+[node name="Rank" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(960, 285)
+rotation = -1.309
+texture = ExtResource("4_len4p")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
+visible = false
+modulate = Color(1, 1, 1, 0)
+clip_contents = false
+offset_left = 735.0
+offset_top = 275.0
+offset_right = 1185.0
+offset_bottom = 325.0
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 6
+theme_override_fonts/normal_font = ExtResource("2_q82si")
+theme_override_font_sizes/normal_font_size = 26
+bbcode_enabled = true
+text = "[center]"
+
+[node name="Restart" type="Button" parent="RichTextLabel"]
+layout_mode = 0
+offset_left = 50.0
+offset_top = 55.0
+offset_right = 222.5
+offset_bottom = 94.0
+theme = ExtResource("5_3jmqn")
+text = "Restart"
+
+[node name="Options" type="Button" parent="RichTextLabel"]
+layout_mode = 0
+offset_left = 227.5
+offset_top = 55.0
+offset_right = 400.0
+offset_bottom = 94.0
+theme = ExtResource("5_3jmqn")
+text = "Options
+"
+
+[node name="OptionList" parent="." instance=ExtResource("6_7ed7x")]
+visible = false
+
+[connection signal="pressed" from="RichTextLabel/Restart" to="." method="_on_restart_pressed"]
+[connection signal="pressed" from="RichTextLabel/Options" to="." method="_on_options_pressed"]
